@@ -1,0 +1,69 @@
+[{
+  "_id": {
+    "$oid": "65e60643f67dbd3590373f7d"
+  },
+  "assunto": "Banco de dados 2",
+  "professor": {
+    "nome": "Jonas"
+  },
+  "alunos": [
+    {
+      "nome": "Pedro"
+    },
+    {
+      "nome": "Alexandre"
+    },
+    {
+      "nome": "Lucas"
+    },
+    {
+      "nome": "Vinicius"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "65e60643f67dbd3590373f7e"
+  },
+  "assunto": "Paradigmas de Programação",
+  "professor": {
+    "nome": "Marcelo"
+  },
+  "alunos": [
+    {
+      "nome": "Pedro"
+    },
+    {
+      "nome": "Alexandre"
+    },
+    {
+      "nome": "Lucas"
+    },
+    {
+      "nome": "Vinicius"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "65e60643f67dbd3590373f7f"
+  },
+  "assunto": "Microcontroladores e processadores",
+  "professor": {
+    "nome": "João"
+  },
+  "alunos": [
+    {
+      "nome": "Pedro"
+    },
+    {
+      "nome": "Alexandre"
+    },
+    {
+      "nome": "Lucas"
+    },
+    {
+      "nome": "Silvio"
+    }
+  ]
+}]
