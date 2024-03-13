@@ -39,4 +39,15 @@ class ProductAnalyzer:
         write_a_json(result, "cliente_maior_compra")
 
     def get_produtos_vendidos_mais_que_1(self):
-        pass
+        result = self._database.collection.aggregate([
+            {"$unwind": "$produtos"},
+            {"$group": {"_id": "$produtos.descricao",
+                        "total": {"$sum": "$produtos.quantidade"}}},
+            {"$cond": [
+                {"$gt": ["total", 1]},
+                {"$project": {"_id": 1, "total": {"total"}}},
+                ""
+            ]}
+        ])
+
+        write_a_json(result, "produtos_vendidos_mais_que_1")
