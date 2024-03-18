@@ -35,7 +35,7 @@ def atualiza_serie_temporal(serie_temporal, timer, temperatura):
             intervalo += registro['intervalo']
 
         # verifica se o intervalo total entre os registros é maior que uma hora
-        if intervalo > 360:
+        if intervalo > 3600:
             # caso seja, remove o mais antigo
             nova_serie_temporal.pop(0)
         else:
