@@ -1,0 +1,118 @@
+-- CRAINDO NÓS
+CREATE(:Pessoa:Estagiario{
+    nome: "pedro",
+    idade: 20,
+    sexo: "masculino"
+}), (:Pessoa:Estagiario{
+    nome: "yasmin",
+    idade: 17,
+    sexo: "feminino"
+}), (:Pessoa:Estudante{
+    nome: "julia",
+    idade: 14,
+    sexo: "feminino"
+}), (:Pessoa:Engenheiro{
+    nome: "jose",
+    idade: 54,
+    sexo: "masculino"
+}), (:Pessoa:Costureira{
+    nome: "silvana",
+    idade: 53,
+    sexo: "masculino"
+}), (:Pet:Cachorro{
+    nome: "amora",
+    idade: 10,
+    sexo: "feminino"
+}), (:Pet:Gato{
+    nome: "misty",
+    idade: 3,
+    sexo: "masculino"
+}), (:Pessoa:Costureira{
+    nome: "creia",
+    idade: 50,
+    sexo: "feminino"
+}), (:Pessoa:Gesseiro{
+    nome: "eduardo",
+    idade: 50,
+    sexo: "masculino"
+}), (:Pessoa:Estagiario{
+    nome: "caue",
+    idade: 21,
+    sexo: "masculino"
+})
+
+-- CRIANDO RELACIONAMENTOS
+
+-- PAI_DE
+MATCH (p:Pessoa{nome:"jose"}), (f:Pessoa{nome:"pedro"})
+CREATE (p)-[:PAI_DE]->(f)
+
+MATCH (p:Pessoa{nome:"jose"}), (f:Pessoa{nome:"julia"})
+CREATE (p)-[:PAI_DE]->(f)
+
+MATCH (p:Pessoa{nome:"silvana"}), (f:Pessoa{nome:"pedro"})
+CREATE (p)-[:PAI_DE]->(f)
+
+MATCH (p:Pessoa{nome:"silvana"}), (f:Pessoa{nome:"julia"})
+CREATE (p)-[:PAI_DE]->(f)
+
+MATCH (p:Pessoa{nome:"creia"}), (f:Pessoa{nome:"yasmin"})
+CREATE (p)-[:PAI_DE]->(f)
+
+MATCH (p:Pessoa{nome:"eduardo"}), (f:Pessoa{nome:"yasmin"})
+CREATE (p)-[:PAI_DE]->(f)
+
+MATCH (p:Pessoa{nome:"eduardo"}), (f:Pessoa{nome:"caue"})
+CREATE (p)-[:PAI_DE]->(f)
+
+-- IRMAO_DE
+MATCH(p:Pessoa{nome:"pedro"}), (i:Pessoa{nome:"julia"})
+CREATE (p)-[:IRMAO_DE]->(i)
+
+MATCH(p:Pessoa{nome:"julia"}), (i:Pessoa{nome:"pedro"})
+CREATE (p)-[:IRMAO_DE]->(i)
+
+MATCH(p:Pessoa{nome:"caue"}), (i:Pessoa{nome:"yasmin"})
+CREATE (p)-[:IRMAO_DE]->(i)
+
+MATCH(p:Pessoa{nome:"yasmin"}), (i:Pessoa{nome:"caue"})
+CREATE (p)-[:IRMAO_DE]->(i)
+
+-- NAMORADO_DE
+MATCH(p:Pessoa{nome:"pedro"}), (n:Pessoa{nome:"yasmin"})
+CREATE (p)-[:NAMORADO_DE{tempo:1}]->(n)
+
+MATCH(p:Pessoa{nome:"yasmin"}), (n:Pessoa{nome:"pedro"})
+CREATE (p)-[:NAMORADO_DE{tempo:1}]->(n)
+
+MATCH(p:Pessoa{nome:"jose"}), (n:Pessoa{nome:"silvana"})
+CREATE (p)-[:NAMORADO_DE{tempo:21}]->(n)
+
+MATCH(p:Pessoa{nome:"silvana"}), (n:Pessoa{nome:"jose"})
+CREATE (p)-[:NAMORADO_DE{tempo:21}]->(n)
+
+MATCH(p:Pessoa{nome:"creia"}), (n:Pessoa{nome:"eduardo"})
+CREATE (p)-[:NAMORADO_DE{tempo:20}]->(n)
+
+MATCH(p:Pessoa{nome:"eduardo"}), (n:Pessoa{nome:"creia"})
+CREATE (p)-[:NAMORADO_DE{tempo:20}]->(n)
+
+-- DONO_DE
+MATCH(p:Pessoa{nome:"yasmin"}), (a:Pet{nome:"misty"})
+CREATE (p)-[:DONO_DE]->(a)
+
+MATCH(p:Pessoa{nome:"creia"}), (a:Pet{nome:"misty"})
+CREATE (p)-[:DONO_DE]->(a)
+
+MATCH(p:Pessoa{nome:"eduardo"}), (a:Pet{nome:"misty"})
+CREATE (p)-[:DONO_DE]->(a)
+
+MATCH(p:Pessoa{nome:"yasmin"}), (a:Pet{nome:"amora"})
+CREATE (p)-[:DONO_DE]->(a)
+
+MATCH(p:Pessoa{nome:"creia"}), (a:Pet{nome:"amora"})
+CREATE (p)-[:DONO_DE]->(a)
+
+MATCH(p:Pessoa{nome:"eduardo"}), (a:Pet{nome:"amora"})
+CREATE (p)-[:DONO_DE]->(a)
+
