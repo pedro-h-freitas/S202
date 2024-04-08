@@ -41,13 +41,11 @@ class ProductAnalyzer:
     def get_produtos_vendidos_mais_que_1(self):
         result = self._database.collection.aggregate([
             {"$unwind": "$produtos"},
-            {"$group": {"_id": "$produtos.descricao",
-                        "total": {"$sum": "$produtos.quantidade"}}},
-            {"$cond": [
-                {"$gt": ["total", 1]},
-                {"$project": {"_id": 1, "total": {"total"}}},
-                ""
-            ]}
+            {"$match":{"produtos.quantidade":{"$gt": 1}}},
+            {"$group": {"_id": "$produtos.descricao", "totalVendido": {
+                "$sum": "$produtos.quantidade"}}},
+            {"$sort": {"totalVendido": -1}},
+            {"$project": {"_id":1, "totalVendido": 1}},
         ])
-
+        
         write_a_json(result, "produtos_vendidos_mais_que_1")
