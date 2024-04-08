@@ -1,6 +1,5 @@
 from typing import Collection
 import pymongo # pip install pymongo
-from dataset import dataset
 
 
 class Database:
@@ -17,13 +16,5 @@ class Database:
             self.db = self.clusterConnection[database]
             self.collection = self.db[collection]
             print("Conectado ao banco de dados com sucesso!")
-        except Exception as e:
-            print(e)
-
-    def resetDatabase(self):
-        try: 
-            self.db.drop_collection(self.collection)
-            self.collection.insert_many(dataset)
-            print("Banco de dados resetado com sucesso!")
         except Exception as e:
             print(e)
