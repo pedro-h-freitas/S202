@@ -42,12 +42,13 @@ class MotoristaCLI(SimpleCLI):
 
             print(f'Corrida: {n_corridas}')
 
-            nota = int(input('Nota: '))
-            distancia = float(input('Nota: '))
-            valor = float(input('Nota: '))
+            nota = int(input('\tNota: '))
+            distancia = float(input('\tDistancia: '))
+            valor = float(input('\tValor: '))
 
-            nome_passageiro = str(input('Nome do passageiro: '))
-            documento_passageiro = str(input('Documento do passageiro: '))
+            print('\tPassageiro')
+            nome_passageiro = str(input('\t\tNome: '))
+            documento_passageiro = str(input('\t\tDocumento: '))
 
             passageiro = Passageiro(nome_passageiro, documento_passageiro)
 
@@ -56,7 +57,7 @@ class MotoristaCLI(SimpleCLI):
             corridas.append(corrida)
             notas += nota
 
-            if input('Mais uma corrida? (S/N)') in ('s', 'S', 'y', 'Y'):
+            if input('Mais uma corrida? (S/N) ').lower() == 'n':
                 break
 
         nota = int(notas / n_corridas)
@@ -68,7 +69,18 @@ class MotoristaCLI(SimpleCLI):
         id = input("Id motorista: ")
         motorista = self.motoristaDAO.read_motorista_by_id(id)
         if motorista:
-            print(motorista)
+            print(f'Nota: {motorista["nota"]}')
+            print('Corridas: ')
+            for corrida in motorista["corridas"]:
+                passageiro = corrida["passageiro"]
+
+                print(f'\tNota: {corrida["nota"]}')
+                print(f'\tDistancia: {corrida["distancia"]}')
+                print(f'\tValor: {corrida["valor"]}')
+
+                print('\tPassageiro: ')
+                print(f'\t\tNome: {passageiro["nome"]}')
+                print(f'\t\tDocumento: {passageiro["documento"]}')
 
     def update_motorista(self):
         id = input("Id motorista: ")
@@ -96,7 +108,7 @@ class MotoristaCLI(SimpleCLI):
             corridas.append(corrida)
             notas += nota
 
-            if input('Mais uma corrida? (S/N)') in ('s', 'S', 'y', 'Y'):
+            if input('Mais uma corrida? (S/N) ').lower == 'n':
                 break
 
         nota = int(notas / n_corridas)
