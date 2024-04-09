@@ -23,7 +23,7 @@ class SimpleCLI:
                 print("Invalid command. Try again.")
 
 
-class PersonCLI(SimpleCLI):
+class MotoristaCLI(SimpleCLI):
     def __init__(self, motoristaDAO: MotoristaDAO):
         super().__init__()
         self.motoristaDAO = motoristaDAO
