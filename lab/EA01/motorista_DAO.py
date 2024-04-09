@@ -37,7 +37,7 @@ class MotoristaDAO:
             print(f"Um erro ocorreu atualizando o Motorista: {e}")
             return None
 
-    def delete_person(self, id: str):
+    def delete_motorista(self, id: str):
         try:
             res = self.db.collection.delete_one({"_id": ObjectId(id)})
             print(
