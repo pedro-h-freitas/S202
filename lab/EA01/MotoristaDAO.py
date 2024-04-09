@@ -1,13 +1,16 @@
 from database import Database
 from bson.objectid import ObjectId
 
+from Motorista import Motorista
+
+
 class MotoristaDAO:
     def __init__(self, database: str, collection: str) -> None:
         self.db = Database(database, collection)
 
-    def create_motorista(self, corridas:list, nota: int):
+    def create_motorista(self, motorista: Motorista):
         try:
-            res = self.db.collection.insert_one({"corridas": corridas, "nota": nota})
+            res = self.db.collection.insert_one(motorista.get_dict())
             print(f"Motorista criado com o id: {res.inserted_id}")
             return res.inserted_id
         except Exception as e:
@@ -22,11 +25,13 @@ class MotoristaDAO:
         except Exception as e:
             print(f"Ocorreu um erro buscando motorista: {e}")
             return None
-            
-    def update_motorista(self, id: str, corridas: list, nota: int):
+
+    def update_motorista(self, id: str, motorista: Motorista):
         try:
-            res = self.db.collection.update_one({"_id": ObjectId(id)}, {"$set": {"corridas": corridas, "nota": nota}})
-            print(f"Motorista atualizado: {res.modified_count} documento(s) modificados")
+            res = self.db.collection.update_one(
+                {"_id": ObjectId(id)}, {"$set": motorista.get_dict()})
+            print(
+                f"Motorista atualizado: {res.modified_count} documento(s) modificados")
             return res.modified_count
         except Exception as e:
             print(f"Um erro ocorreu atualizando o Motorista: {e}")
@@ -35,7 +40,8 @@ class MotoristaDAO:
     def delete_person(self, id: str):
         try:
             res = self.db.collection.delete_one({"_id": ObjectId(id)})
-            print(f"Motorista deletado: {res.deleted_count} documento(s) deletado")
+            print(
+                f"Motorista deletado: {res.deleted_count} documento(s) deletado")
             return res.deleted_count
         except Exception as e:
             print(f"Ocorreu um erro ao excluir um Motorista: {e}")
