@@ -1,4 +1,4 @@
-from Passageiro import Passageiro
+from passageiro import Passageiro
 
 
 class Corrida:

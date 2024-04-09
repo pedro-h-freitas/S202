@@ -1,7 +1,7 @@
 from database import Database
 from bson.objectid import ObjectId
 
-from Motorista import Motorista
+from motorista import Motorista
 
 
 class MotoristaDAO:

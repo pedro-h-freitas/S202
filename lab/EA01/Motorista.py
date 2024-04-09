@@ -1,4 +1,4 @@
-from Corrida import Corrida
+from corrida import Corrida
 
 
 class Motorista:
