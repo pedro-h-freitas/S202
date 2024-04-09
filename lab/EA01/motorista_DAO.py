@@ -20,7 +20,7 @@ class MotoristaDAO:
     def read_motorista_by_id(self, id: str):
         try:
             res = self.db.collection.find_one({"_id": ObjectId(id)})
-            print(f"Motorista encontrado: {res}")
+            # print(f"Motorista encontrado: {res}")
             return res
         except Exception as e:
             print(f"Ocorreu um erro buscando motorista: {e}")
