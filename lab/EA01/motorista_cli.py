@@ -94,12 +94,13 @@ class MotoristaCLI(SimpleCLI):
 
             print(f'Corrida: {n_corridas}')
 
-            nota = int(input('Nota: '))
-            distancia = float(input('Nota: '))
-            valor = float(input('Nota: '))
+            nota = int(input('\tNota: '))
+            distancia = float(input('\tDistancia: '))
+            valor = float(input('\tValor: '))
 
-            nome_passageiro = str(input('Nome do passageiro: '))
-            documento_passageiro = str(input('Documento do passageiro: '))
+            print('\tPassageiro')
+            nome_passageiro = str(input('\t\tNome: '))
+            documento_passageiro = str(input('\t\tDocumento: '))
 
             passageiro = Passageiro(nome_passageiro, documento_passageiro)
 
