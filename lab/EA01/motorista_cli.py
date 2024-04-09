@@ -29,7 +29,7 @@ class MotoristaCLI(SimpleCLI):
         self.motoristaDAO = motoristaDAO
         self.add_command("create", self.create_motorista)
         self.add_command("read", self.read_motorista)
-        self.add_command("update", self.update_person)
+        self.add_command("update", self.update_motorista)
         self.add_command("delete", self.delete_motorista)
 
     def create_motorista(self):
@@ -70,7 +70,7 @@ class MotoristaCLI(SimpleCLI):
         if motorista:
             print(motorista)
 
-    def update_person(self):
+    def update_motorista(self):
         id = input("Id motorista: ")
 
         corridas = []
