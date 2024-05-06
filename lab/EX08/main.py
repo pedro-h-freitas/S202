@@ -22,3 +22,5 @@ game_db.create_match([("Pedro", 190), ("Yasmin", 270)])
 print(game_db.get_players())
 print(game_db.get_match(2))
 print(game_db.get_player_hist(0))
+
+db.close()
