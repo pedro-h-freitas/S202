@@ -1,0 +1,43 @@
+
+# Agregações
+MATCH(a:Airport) RETURN COUNT(a);
+
+MATCH(a:Airport) RETURN MIN(a.altitude);
+
+MATCH(a:Airport) RETURN MAX(a.altitude);
+
+MATCH(a:Airport) RETURN AVG(a.altitude);
+
+
+# Funções matemáticas 
+MATCH(a:Airport)
+WHERE(a.altitude < RAND() * 14472)
+RETURN a;
+
+MATCH(a:Airport) RETURN FLOOR(AVG(a.altitude)) as avg_altitude;
+
+MATCH(a:Airport{id:"1"}), (b:Airport{id:"2"})
+RETURN ABS(a.location.x - b.location.x) as distancia_x_entre_a_e_b;
+
+MATCH(a:Airport{id:"1"}), (b:Airport{id:"2"})
+RETURN ABS(a.location.y - b.location.y) as distancia_y_entre_a_e_b;
+
+MATCH(a:Airport{id:"1"}), (b:Airport)
+WHERE(SIGN(a.pagerank - b.pagerank) = -1)
+RETURN b.id;
+
+# Funções de String
+MATCH(a:Airport)
+RETURN TOSTRING(a.location);
+
+MATCH(a:Airport{id:"1"})
+RETURN REPLACE(REPLACE(TOSTRING(a.location), "point", ""), ", crs: 'wgs-84'", "");
+
+MATCH(n:Region)
+RETURN SPLIT(n.name, "-");
+
+MATCH(n:Region)
+RETURN SUBSTRING(n.name, 0, 2);
+
+MATCH(n:Region)
+RETURN SUBSTRING(n.name, 3);
