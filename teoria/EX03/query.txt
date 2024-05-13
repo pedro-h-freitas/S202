@@ -1,0 +1,43 @@
+CREATE TABLE peca(
+    id BIGINT,
+    nome TEXT,
+    carro TEXT,
+    estante INT,
+    nivel INT,
+    quantidade INT,
+    PRIMARY KEY ((id, nome, carro))
+);
+
+INSERT INTO peca(id, nome, carro, estante, nivel, quantidade)
+VALUES(5, 'Pistao', 'Mustang', 4, 1, 167);
+
+INSERT INTO peca(id, nome, carro, estante, nivel, quantidade)
+VALUES(4, 'Suspencao', 'Argo', 1, 1, 3500);
+
+SELECT *
+FROM peca
+WHERE id = 5 AND nome = 'Pistao' AND carro = 'Mustang';
+
+SELECT AVG(quantidade) FROM peca;
+
+SELECT COUNT(*) FROM peca;
+
+SELECT
+MIN(quantidade) AS "menor quantidade",
+MAX(quantidade) AS "maior quantidade"
+FROM peca;
+
+SELECT nome, carro, quantidade
+FROM peca
+WHERE estante = 3
+ALLOW FILTERING;
+
+SELECT AVG(quantidade)
+FROM peca
+WHERE nivel = 1
+ALLOW FILTERING;
+
+SELECT *
+FROM peca
+WHERE estante < 3 AND nivel > 4
+ALLOW FILTERING;
